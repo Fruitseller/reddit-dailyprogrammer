@@ -19,3 +19,6 @@
 *.exe
 *.out
 *.app
+
+# test files
+challenge-191-easy/book.txt
