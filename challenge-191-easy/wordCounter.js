@@ -28,8 +28,26 @@ WordCounter.prototype.output = function() {
 	}	
 }
 
+WordCounter.prototype.bubbleSort = function() {
 
-fs.readFile('text.txt', 'utf8', function(err, data){
+	for (var n = this.listOfWords.length; n > 1; n--) {
+
+		for (var i = 0; i < n - 1; i++) {
+
+			if (this.listOfWords[i].counter > this.listOfWords[i+1].counter) {
+				var temp = this.listOfWords[i];
+				this.listOfWords[i] = this.listOfWords[i+1];
+				this.listOfWords[i+1] = temp;
+			}
+
+		}
+
+	}
+
+}
+
+
+fs.readFile('book.txt', 'utf8', function(err, data){
 	if (err) throw err;
 	var wordCounter = new WordCounter();
 	var words = data.split(' ');
@@ -39,6 +57,7 @@ fs.readFile('text.txt', 'utf8', function(err, data){
 		wordCounter.count(words[i]);
 	}
 
+	wordCounter.bubbleSort();
 	wordCounter.output();
 
 });
